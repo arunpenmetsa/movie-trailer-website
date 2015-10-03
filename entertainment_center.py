@@ -1,43 +1,47 @@
 import media
 import fresh_tomatoes
+from operator import itemgetter, attrgetter, methodcaller
 
-toy_story = media.Movie("Toy Story",
-                        "A story of a boy and his toys",
-                        "https://upload.wikimedia.org/wikipedia/en/thumb/1/13/Toy_Story.jpg",
-                        "https://www.youtube.com/watch?v=KYz2wyBy3kc")
+# Create the Movie objects for titles to be displayed
 
-#print(toy_story.storyline)
+shawshank_redemption = media.Movie("Shawshank Redemption",
+                        "A story of an innocent man in prison",
+                        "https://upload.wikimedia.org/wikipedia/en/8/81/ShawshankRedemptionMoviePoster.jpg",
+                        "https://www.youtube.com/watch?v=6hB3S9bIaco","R", "1994")
 
-avatar = media.Movie("Avatar",
-                        "A marine on an alient planet",
-                        "https://upload.wikimedia.org/wikipedia/id/b/b0/Avatar-Teaser-Poster.jpg",
-                        "https://www.youtube.com/watch?v=cRdxXPV9GNQ")
+tora_tora_tora = media.Movie("Tora Tora Tora",
+                        "The attack on Pearl Harbor during World War II",
+                        "https://upload.wikimedia.org/wikipedia/en/1/1a/ToraToraTora1970.png",
+                        "https://www.youtube.com/watch?v=GgX1WBf2SjE","G", "1970")
 
+guardians_of_the_galaxy = media.Movie("Guardians of the Galaxy", 
+                        "Extraterrestrial Misfits fighting over a powerful artifact",
+                        "https://upload.wikimedia.org/wikipedia/en/8/8f/GOTG-poster.jpg",
+                        "https://www.youtube.com/watch?v=b3isCLVghoI","PG-13", "2014")
 
-#print(avatar.storyline)
-#avatar.show_trailer()
+return_of_the_king = media.Movie("Return of the King", 
+                        "Epic journey to destroy the one ring and evil on Middle Earth",
+                        "https://upload.wikimedia.org/wikipedia/en/9/9d/Lord_of_the_Rings_-_The_Return_of_the_King.jpg",
+                        "https://www.youtube.com/watch?v=WIrRJ8bCZYQ","PG-13","2003")
 
-school_of_rock = media.Movie("School of Rock", "storyline",
-                        "https://upload.wikimedia.org/wikipedia/en/1/11/School_of_Rock_Poster.jpg",
-                        "https://www.youtube.com/watch?v=XCwy6lW5Ixc")
+alien = media.Movie("Alien", "Space Marines fight a deadly alien organism",
+                        "https://upload.wikimedia.org/wikipedia/en/c/c3/Alien_movie_poster.jpg",
+                        "https://www.youtube.com/watch?v=LjLamj-b0I8","R", "1979")
 
-ratatoille = media.Movie("Ratatouille", "storyline",
-                        "https://upload.wikimedia.org/wikipedia/en/5/50/RatatouillePoster.jpg",
-                        "https://www.youtube.com/watch?v=XCwy6lW5Ixc")
+gladiator = media.Movie("Gladiator", 
+                        "A Roman general is betrayed by the new Emperor",
+                        "https://upload.wikimedia.org/wikipedia/en/8/8d/Gladiator_ver1.jpg",
+                        "https://www.youtube.com/watch?v=uwTKRz-WmHU","R", "2000")
 
-midnight_in_paris = media.Movie("Midnight in Paris", "storyline",
-                        "https://upload.wikimedia.org/wikipedia/en/9/9f/Midnight_in_Paris_Poster.jpg",
-                        "https://www.youtube.com/watch?v=XCwy6lW5Ixc")
+# Create the list of movies
+movies = [shawshank_redemption, tora_tora_tora, guardians_of_the_galaxy, return_of_the_king, 
+                alien, gladiator]
 
+# Sort the list to show oldest movies first 
+movies_sort= sorted(movies, key=attrgetter('release_year'))
 
-hunger_games = media.Movie("Hunger Games", "storyline",
-                        "https://upload.wikimedia.org/wikipedia/en/4/42/HungerGamesPoster.jpg",
-                        "https://www.youtube.com/watch?v=XCwy6lW5Ixc")
+# Display the library
+fresh_tomatoes.open_movies_page(movies_sort)
 
-
-movies = [toy_story, avatar, school_of_rock, ratatoille, midnight_in_paris, hunger_games]
-fresh_tomatoes.open_movies_page(movies)
-
-print(media.Movie.VALID_RATINGS)
-print(media.Movie.__doc__)
-# doc comes from a comment in the class definition
+#print(media.Movie.VALID_RATINGS)
+#print(media.Movie.__doc__)

@@ -35,11 +35,11 @@ main_page_head = '''
             height: 100%;
         }
         .movie-tile {
-            margin-bottom: 20px;
-            padding-top: 20px;
+            margin-bottom: 5px;
+            padding-top: 15px;
         }
         .movie-tile:hover {
-            background-color: #EEE;
+            background-color: #777;
             cursor: pointer;
         }
         .scale-media {
@@ -119,14 +119,19 @@ main_page_content = '''
 
 
 # A single movie entry html template
+# Added the rating and the release year to the message
+# Also added a mouse over for the storyline and an error message if the image does not load
+
 movie_tile_content = '''
-<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-    <img src="{poster_image_url}" width="220" height="342">
-    <h2>{movie_title}</h2>
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" 
+    data-toggle="modal" data-target="#trailer" onMouseOver="{storyline}">
+    <img src="{poster_image_url}" title="{storyline}" alt="Image Not Found" onError="this.src='http://a.dilcdn.com/bl/wp-content/uploads/sites/8/2014/03/image5.jpg';" width="220" height="342">
+    <h3><b>{movie_title}</b></h3>
+    <h4>[{rating}] {release_year}</h4>    
 </div>
 '''
 
-
+# Function that creates the library elements for each movie
 def create_movie_tiles_content(movies):
     # The HTML content for this section of the page
     content = ''
@@ -143,11 +148,14 @@ def create_movie_tiles_content(movies):
         content += movie_tile_content.format(
             movie_title=movie.title,
             poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+            trailer_youtube_id=trailer_youtube_id,
+            storyline=movie.storyline,
+            rating=movie.rating,
+            release_year=movie.release_year
         )
     return content
 
-
+# Function that creates the html file to display the library
 def open_movies_page(movies):
     # Create or overwrite the output file
     output_file = open('fresh_tomatoes.html', 'w')
@@ -163,4 +171,3 @@ def open_movies_page(movies):
     # open the output file in the browser (in a new tab, if possible)
     url = os.path.abspath(output_file.name)
     webbrowser.open('file://' + url, new=2)
-
