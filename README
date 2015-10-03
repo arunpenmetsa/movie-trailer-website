@@ -1,0 +1,18 @@
+README File
+
+The Movie Trailer Website project consists of 3 files
+
+Media.py - This file contains the movie class that outlines the characteristics of a movie.
+Entertainment_center.py - This file creates the movie elements for movies that will be on the website. It then calls a function to create the website with the movie trailers and information displayed
+fresh_tomatoes.py - This file defines the layout and the style of the trailers website. It also creates the html file for the website and places the Movie elements on the page.
+
+To generate the movie trailer website, run the following command after python is in the classpath
+
+python entertainment_center.py
+
+
+NOTE - Additional features beyond basic project requirements
+- Added rating and year of release
+- Added error checks for rating and year of release
+- Sorted movies in order of release date
+- Added movie storyline in mouseover and error image if the image does not load
